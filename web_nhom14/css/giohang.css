@@ -1,0 +1,26 @@
+#Cart table{
+    border: none;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#Cart table th{
+    text-align: center;
+}
+#Cart table #cot1{
+    width:10%;
+}
+#Cart table #cot2{
+    width:40%;
+}
+#Cart table #cot3{
+    width:10%;
+}
+#Cart table #cot4{
+    width:auto;
+}
+#Cart table #cot5{
+    width:auto;
+}
+#Cart .modal-title{
+    text-align: center;
+}
