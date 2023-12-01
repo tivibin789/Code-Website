@@ -84,7 +84,11 @@ function clearData() {
     localStorage.clear();
 }
 function addToCart(object) {
-
+    // var isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+    // if (!isLoggedIn) {
+    //     alert('Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng');
+    //     return;
+    // }
     var listchildren = object.parentElement.parentElement.children;
 
     var name = listchildren[0].children[1].innerText;
@@ -259,17 +263,64 @@ document.getElementById('form-23').addEventListener('submit', function(event) {
     event.preventDefault();   
     window.location.href = 'index.html';   
 });
+// Tìm liên kết đăng nhập và thêm sự kiện click
+// Tìm liên kết đăng nhập và thêm sự kiện click
+var loginLink = document.getElementById('dn');
+window.onload = function() {
+    // Tìm liên kết đăng nhập và thêm sự kiện click
+    var loginLink = document.getElementById('dn');
+    loginLink.addEventListener('click', function(event) {
+        // Khi liên kết đăng nhập được nhấp, đặt trạng thái đăng nhập thành true
+        localStorage.setItem('isLoggedIn', true);
+    });
+}
+//js admin
+    //  let currentRow; // Biến để lưu trữ hàng đang được chỉnh sửa
 
+// Hàm mở modal chỉnh sửa với thông tin người dùng
+// function openEditModal(name, email, row) {
+//     // Lưu trữ hàng đang được chỉnh sửa
+//     currentRow = row;
 
-  
+//     // Hiển thị modal
+//     document.getElementById('editModal').style.display = 'block';
+//     // Hiển thị overlay
+//     document.getElementById('overlay').style.display = 'block';
 
+//     // Đặt giá trị cho các trường trong modal
+//     document.getElementById('editName').value = name;
+//     document.getElementById('editEmail').value = email;
+// }
 
-// document.getElementById('form-1').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     alert('Đăng ký thành công');
-//     setTimeout(function() {
-//         window.location.href = "login.html";
-//     },400);
-// });
+// // Hàm xóa người dùng
+// function deleteUser(row) {
+//     row.parentNode.removeChild(row);
+// }
+// document.getElementById('editForm').addEventListener('submit', function (e) {
+//                 e.preventDefault();
 
+//                 // Lấy giá trị mới từ form
+//                 const newName = document.getElementById('editName').value;
+//                 const newEmail = document.getElementById('editEmail').value;
 
+//                 // Cập nhật nội dung trong hàng đang được chỉnh sửa
+//                 currentRow.cells[0].innerText = newName;
+//                 currentRow.cells[1].innerText = newEmail;
+
+//                 // Ẩn modal
+//                 document.getElementById('editModal').style.display = 'none';
+//                 // Ẩn overlay
+//                 document.getElementById('overlay').style.display = 'none';
+//             });
+
+//             // Ẩn modal khi nhấn vào overlay
+//             document.getElementById('overlay').addEventListener('click', function () {
+//                 document.getElementById('editModal').style.display = 'none';
+//                 document.getElementById('overlay').style.display = 'none';
+//             });
+
+//             // Ẩn modal khi nhấn vào nút thoát
+//             document.getElementById('closeModal').addEventListener('click', function () {
+//                 document.getElementById('editModal').style.display = 'none';
+//                 document.getElementById('overlay').style.display = 'none';
+//             });

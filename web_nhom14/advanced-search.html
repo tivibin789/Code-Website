@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Kiếm Nâng Cao</title>
+    <link rel="stylesheet" href="css/search.css">
+</head>
+
+<body>
+   <a href="Indexuser.html">
+    <img class="image" src="images/logo-page.png" alt="Logo" >
+   </a>
+    <div class="container">
+        <h1>Tìm Kiếm Nâng Cao</h1>
+        <form action="/tim-kiem" method="GET">
+            
+             <div class="form-group">
+                <label for="tu-khoa">Từ khóa:</label>
+                <input type="text" id="tu-khoa" name="q" placeholder="Nhập từ khóa tìm kiếm">
+             </div>
+             <div class="form-group">
+                <label for="thuong-hieu">Thương hiệu:</label>
+                <select id="thuong-hieu" name="thuong-hieu">
+                    <option value="tat-ca">Tất Cả</option>
+                    <option value="nike">Nike</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="puma">Puma</option>
+                    <option value="converse">Converse</option>
+                </select>
+             </div>
+
+             <div class="form-group">
+                <label for="danh-gia">Đánh giá:</label>
+                <select id="danh-gia" name="danh-gia">
+                    <option value="tat-ca">Tất Cả</option>
+                    <option value="1">1 sao</option>
+                    <option value="2">2 sao</option>
+                    <option value="3">3 sao</option>
+                    <option value="4">4 sao</option>
+                    <option value="5">5 sao</option>
+                </select>
+             </div>
+             <div class="form-group">
+                <label for="tinh-trang">Tình trạng:</label>
+                <select id="tinh-trang" name="tinh-trang">
+                    <option value="tat-ca">Tất Cả</option>
+                    <option value="con-hang">Còn hàng</option>
+                    <option value="het-hang">Hết hàng</option>
+                    <option value="sap-ve">Sắp về</option>
+                </select>
+             </div>
+
+             <!-- Fields for value range -->
+             <div class="form-group">
+                <label for="gia-tri-min">Giá Trị Tối Thiểu:</label>
+                <input type="text" id="gia-tri-min" name="gia-tri-min" placeholder="Nhập giá trị tối thiểu">
+             </div>
+             <div class="form-group">
+                <label for="gia-tri-max">Giá Trị Tối Đa:</label>
+                <input type="text" id="gia-tri-max" name="gia-tri-max" placeholder="Nhập giá trị tối đa">
+             </div>
+
+             <input id="tk" type="submit" value="Tìm Kiếm">
+         </form>
+     </div>
+     <script>
+      var a=document.querySelector('#tk')
+      a.addEventListener('click',function(e){
+         e.preventDefault();
+      })
+     </script>
+</body>
+
+</html>
