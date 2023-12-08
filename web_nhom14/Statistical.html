@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thống kê</title>
+    <link rel="stylesheet" href="css/ggg.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .header {
+            height: 80px;
+            position: relative;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .a h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .management-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .management-link {
+            margin-right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .management-link:hover {
+            text-decoration: none;
+            border-bottom: 2px solid #fff;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .user-info p {
+            margin: 0;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        main {
+            margin-left: 220px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .addnd {
+            font-size: 20px;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+        }
+        /* Chỉnh sửa định dạng cho cột avatar */
+        td img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        label, select, input {
+    margin-bottom: 10px;
+}
+
+select, input {
+    padding: 8px;
+}
+
+/* Căn giữa phần chọn thương hiệu, loại giày và sản phẩm */
+#brand, #gender, #product {
+    display: inline-block;
+    margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="a">
+            Trang Quản Trị
+        </div>
+        <div class="management-links">
+            <a href="products.html" class="management-link">Quản lý Sản phẩm</a>
+            <a href="order.html" class="management-link">Quản lý Đơn hàng</a>
+            <a href="#" class="management-link">Thống kê</a>
+            <a href="adminuser.html" class="management-link">Quản lý Người dùng</a>
+        </div>
+        <div class="user-info">
+            <img src="images/avatar.gif" alt="Avatar">
+            <p>Trịnh Văn Mạnh</p>
+        </div>
+    </div>
+    <main>
+        <h1>Thống kê</h1>
+        <form id="statistics-form">
+            <label for="product">Nhập tên sản phẩm:</label>
+            <input type="text" id="product" name="product">
+            <label for="gender">Loại giày:</label>
+    <select id="gender" name="gender">
+        <option value="All">Tất cả</option>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+    </select>
+    <label for="brand">Thương hiệu:</label>
+    <select id="brand" name="brand">
+        <option value="All">Tất cả</option>
+        <option value="Adidas">Adidas</option>
+        <option value="Puma">Puma</option>
+        <option value="Converse">Converse</option>
+        <option value="Nike">Nike</option>
+    </select>
+            <label for="start-date">Từ ngày:</label>
+            <input type="date" id="start-date" name="start-date">
+            <label for="end-date">Đến ngày:</label>
+            <input type="date" id="end-date" name="end-date">
+            <input type="submit" value="Thống kê">
+        </form>
+        <div id="result"></div>
+        <table>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Địa chỉ</th>
+                <th>Số lượng</th>
+                <th>Ngày bán</th>
+                <th>Thành tiền</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="images/giayAdidas/Alphabounce EK - Nam - Đen.jpg" alt="Sản phẩm A"></td>
+                <td> Alphabounce EK - Nam - Đen</td>
+                <td>Sản phẩm A - Địa chỉ</td>
+                <td>20</td>
+                <td>2022-01-01</td>
+                <td>100,000 VND</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><img src="images/PUMA/Rebound Joy Low/4.webp" alt="Sản phẩm B"></td>
+                <td>Rebound Joy Low</td>
+                <td>Sản phẩm B - Địa chỉ</td>
+                <td>15</td>
+                <td>2022-01-02</td>
+                <td>75,000 VND</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><img src="images/giayAdidas/Alphabounce Flow Nam - Trắng.jpg" alt="Sản phẩm C"></td>
+                <td>Alphabounce Flow Nam - Trắng</td>
+                <td>Sản phẩm C - Địa chỉ</td>
+                <td>30</td>
+                <td>2022-01-03</td>
+                <td>150,000 VND</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><img src="images/PUMA/Suede Mayu Trainers/3.webp" alt="Sản phẩm D"></td>
+                <td>Suede Mayu Trainers</td>
+                <td>Sản phẩm D - Địa chỉ</td>
+                <td>30</td>
+                <td>2022-01-04</td>
+                <td>150,000 VND</td>
+            </tr>
+            <!-- <tr>
+                <td>5</td>
+                <td><img src="images/giayAdidas/GALAXAR Run - Black.jpg" alt="Sản phẩm E"></td>
+                <td>GALAXAR Run - Black</td>
+                <td>Sản phẩm E - Địa chỉ</td>
+                <td>25</td>
+                <td>2022-01-05</td>
+                <td>125,000 VND</td>
+            </tr> -->
+        </table>
+        
+    </main>
+   <script>
+   document.getElementById('statistics-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var tableRows = document.querySelectorAll('table tr');
+    var totalQuantity = 0;
+
+    // Bỏ qua dòng đầu tiên vì nó là tiêu đề của bảng
+    for (var i = 1; i < tableRows.length; i++) {
+        var row = tableRows[i];
+        var rowQuantity = parseInt(row.cells[4].textContent); // Cột Số lượng
+
+        totalQuantity += rowQuantity;
+    }
+
+    // Hiển thị kết quả
+    var resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = 'Tổng số lượng: ' + totalQuantity;
+});
+   </script>
+    
+</body>
+</html>

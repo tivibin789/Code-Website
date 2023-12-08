@@ -170,3 +170,109 @@ html {
 .header__navbar-user-item a:hover{
     background-color:#fafafa;
 }
+/* CSS riêng cho ảnh trong phần lịch sử giao dịch */
+#transaction-table img {
+    max-width: 50px; /* Giả sử bạn muốn giới hạn chiều rộng tối đa của ảnh là 100px */
+    height: auto; /* Đảm bảo tỷ lệ khung hình giữ nguyên */
+    border-radius: 5px; /* Bo tròn góc của ảnh */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Hiển thị đường viền xám nhẹ xung quanh ảnh */
+}
+
+/* CSS thêm padding giữa các ô cột */
+#transaction-table th,
+#transaction-table td {
+    padding: 10px;
+}
+
+/* CSS tùy chỉnh nền và màu chữ cho hàng lẻ và hàng chẵn */
+#transaction-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Màu nền cho hàng lẻ */
+}
+
+#transaction-table tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Màu nền cho hàng chẵn */
+}
+
+/* CSS thêm hiệu ứng khi rê chuột qua hàng */
+#transaction-table tbody tr:hover {
+    background-color: #e0f7fa; /* Màu nền khi rê chuột qua */
+    transition: background-color 0.3s ease; /* Hiệu ứng màu nền chuyển động trong 0.3s */
+}
+.pagination {
+    position: relative;
+    display: flex;
+    text-align: center;
+    left: 650px;
+    top:-80px;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+/* Style for the "about" section */
+#about {
+    padding: 80px 0; /* Adjust the padding as needed */
+}
+
+.section-title {
+    margin-bottom: 50px;
+}
+
+.mz-module-about {
+    padding: 20px;
+    background-color: #fff; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.mz-module-about:hover {
+    transform: scale(1.05); /* Enlarge the module on hover */
+}
+
+.mz-module-about i {
+    font-size: 40px;
+    color: #333; /* Icon color */
+}
+
+/* Additional styles for heading and paragraph */
+.mz-module-about h3 {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.mz-module-about p {
+    font-size: 16px;
+    color: #777; /* Text color */
+}
+/* Thêm vào phần <style> hoặc tập tin CSS riêng */
+#advanced-search-results {
+    text-align: center;
+    padding: 40px 0;
+}
+
+#advanced-search-results h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+#advanced-search-results p {
+    font-size: 18px;
+    color: #666;
+}
+
+
+

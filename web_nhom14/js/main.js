@@ -6,7 +6,7 @@ function buy() {
         message.innerText = "Bạn chưa chọn sản phẩm nào để mua";
     }
     else {
-        message.innerText = "Thanh toán thành công";
+        message.innerText = "Đặt hàng thành công";
         var btn_buy = document.getElementById('btn-buy');
         btn_buy.style.opacity = 0;
     }

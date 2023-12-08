@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Cá Nhân</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        fieldset {
+            width: 40%; /* Giảm kích thước của khung thông tin cá nhân */
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        legend {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .range {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #avatar {
+            display: none; /* Ẩn input file mặc định */
+        }
+
+        #avatarLabel {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #avatarLabel:hover {
+            background-color: #45a049;
+        }
+
+        #avatarImage {
+            display: block;
+            width: 150px;
+            height: 150px;
+            margin: 10px auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #homeImage {
+            position: relative;
+            top: -78px;
+            left: 176px;
+            width: 50px;
+            height: 54px;
+            /* border-radius: 50%; */
+            object-fit: cover;
+        }
+
+        #notification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-out;
+            z-index: 1000;
+        }
+
+        #notification.show {
+            transform: translateY(0);
+        }
+
+        #exitButton {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #exitButton:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>THÔNG TIN TÀI KHOẢN</h1>
+    </header>
+
+    <a href="Indexuser.html">
+        <img id="homeImage" src="images/logo-page.png" alt="Home">
+    </a>
+
+    <div id="notification">Thông tin đã được lưu thành công!</div>
+
+    <fieldset>
+        <legend>Thông Tin Cá Nhân</legend>
+        <form action="" onsubmit="event.preventDefault(); showNotification();">
+            <label for="name">Tên của bạn:</label>
+            <input type="text" name="name" id="name" size="35" value="Trịnh Văn Mạnh">
+            <br><br>
+
+            <label for="email">Email của bạn:</label>
+            <input type="email" name="email" id="email" size="35" value="nguyenvana@example.com">
+            <br><br>
+
+            <label for="password">Mật khẩu của bạn:</label>
+            <input type="password" name="password" id="password" size="35" value="********">
+            <br><br>
+
+            <label for="phone">Số điện thoại:</label>
+            <input type="tel" name="phone" id="phone" size="35" value="0123456789">
+            <br><br>
+
+            <label for="address">Địa chỉ:</label>
+            <input type="text" name="address" id="address" size="35" value="78 Trần Hưng Đạo, Tp Hồ Chí Minh">
+            <br><br>
+
+            <div class="range">
+                <label>Giới tính:</label>
+                <input type="radio" name="gender" id="male" checked>
+                <label for="male">Nam</label>
+                <input type="radio" name="gender" id="female">
+                <label for="female">Nữ</label>
+                <input type="radio" name="gender" id="other">
+                <label for="other">Khác</label>
+            </div>
+            <br><br>
+
+            <label for="birthday">Năm sinh:</label>
+            <input type="date" name="birthday" id="birthday" value="2000-01-01">
+            <br><br>
+
+            <label for="avatar" id="avatarLabel">Chọn ảnh đại diện</label>
+            <input type="file" name="avatar" id="avatar" value="" onchange="loadImage(event)">
+            <img id="avatarImage" src="images/avatar.gif">
+            <br><br>
+
+            <label>Giới thiệu bản thân:</label>
+            <br>
+            <textarea cols="60" rows="6">Tôi là một người vui vẻ, năng động.</textarea>
+            <br><br>
+
+            <div class="button-group">
+                <button>Lưu thông tin</button>
+                <button id="exitButton" onclick="window.history.back();">Thoát</button>
+            </div>
+        </form>
+    </fieldset>
+
+    <script>
+        function loadImage(event) {
+            var output = document.getElementById('avatarImage');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+
+        function showNotification() {
+            var notification = document.getElementById('notification');
+            notification.classList.add('show');
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

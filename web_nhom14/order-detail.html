@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết đơn hàng</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #order-frame {
+            border: 10px solid #ccc;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        #order-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        #order-details > div {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        #order-details > div:not(:last-child):after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);
+            bottom: 0;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        /* CSS cho nút thoát */
+        #close-button {
+            background-color: #ddd; /* Màu xám nhạt */
+            color: #333; /* Màu chữ đậm */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #close-button:hover {
+            background-color: #ccc; /* Màu xám nhạt khi di chuột qua */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="order-frame">
+        <div id="order-details">
+            <!-- Chi tiết đơn hàng sẽ được thêm vào đây bằng JavaScript -->
+        </div>
+        <!-- Thêm nút thoát -->
+        <button id="close-button">Thoát</button>
+    </div>
+    <script src="order-detail.js"></script>
+    <script>
+        // Giả lập dữ liệu đơn hàng
+        var order = {
+            id: 1,
+            customer: 'Nguyễn Văn A',
+            phone: '0123456789',
+            address: '123 Đường A, Quận B',
+            total: '200,000 VND',
+            date: '2021-12-01',
+            status: 'Chưa xử lý',
+            note: 'Giao hàng vào buổi sáng',
+            products: [{
+                name: 'Sản phẩm 1',
+                quantity: 2,
+                price: '100,000 VND'
+            }]
+        };
+
+        // Hiển thị chi tiết đơn hàng
+        document.getElementById('order-details').innerHTML = `
+        <h1>Chi tiết đơn hàng</h1>
+        <div>
+            <h2>Thông tin người nhận</h2>
+            <p>Khách hàng: ${order.customer}</p>
+            <p>Điện thoại: ${order.phone}</p>
+            <p>Địa chỉ: ${order.address}</p>
+        </div>
+        <div>
+            <h2>Danh sách sản phẩm</h2>
+            <ul>
+                ${order.products.map(product => `<li>${product.name} - Số lượng: ${product.quantity} - Giá: ${product.price}</li>`).join('')}
+            </ul>
+        </div>
+        <div>
+            <h2>Tổng kết</h2>
+            <p>Tổng giá: ${order.total}</p>
+            <p>Ghi chú: ${order.note}</p>
+        </div>
+    `;
+
+        // Bắt sự kiện khi nút thoát được nhấp
+        document.getElementById('close-button').addEventListener('click', function () {
+            // Đóng trang khi nút thoát được nhấp
+            window.location.href = 'order.html';
+        });
+    </script>
+</body>
+
+</html>

@@ -9,6 +9,7 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
 .container {
     background-color: #ffffff;
     padding: 40px;
@@ -57,10 +58,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #45a049;
 }
-.image{
+
+.image {
     height: 50px;
-    position: absolute; 
-    top: 23px; 
-    left: 154px; 
+    position: absolute;
+    top: 23px;
+    left: 154px;
     width: 50px;
 }

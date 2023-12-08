@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sản phẩm</title>
+    <link rel="stylesheet" href="css/ggg.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            height: 80px;
+            position: relative;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .a h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .management-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .management-link {
+            margin-right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .management-link:hover {
+            text-decoration: none;
+            border-bottom: 2px solid #fff;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .user-info p {
+            margin: 0;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        main {
+            margin-left: 220px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        #addUser {
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .addnd {
+            font-size: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 2;
+            height: 700px;
+            width: 700px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 600px) {
+            /* ... */
+        }
+
+        /* ... */
+        table img {
+    max-width: 100px; /* Điều chỉnh kích thước tối đa của ảnh */
+    height: 65px; /* Duy trì tỷ lệ khung hình */
+    border-radius: 5px; /* Bo tròn góc của ảnh */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho ảnh */
+    }
+
+   /* CSS khi di chuột qua ảnh */
+      table img:hover {
+    transform: scale(1.1); /* Hiệu ứng phóng to khi di chuột qua */
+    transition: transform 0.3s ease; /* Hiệu ứng có thời gian và chuyển động mượt mà */
+   }
+   /* CSS để di chuyển bảng sang trái */
+  table {
+    margin-right: 60px; /* Điều chỉnh giá trị này để thay đổi khoảng cách sang trái */
+   }
+   /* #editImagePreview{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 30px;
+   } */
+   textarea{
+    width: 100%;
+    height: 100px;
+   }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="a">
+            Trang Quản Trị
+        </div>
+        <div class="management-links">
+            <a href="products.html" class="management-link">Quản lý Sản phẩm</a>
+            <a href="order.html" class="management-link">Quản lý Đơn hàng</a>
+            <a href="Statistical.html" class="management-link">Thống kê</a>
+            <a href="adminuser.html" class="management-link">Quản lý Người dùng</a>
+        </div>
+        <div class="user-info">
+            <img src="images/avatar.gif" alt="Avatar">
+            <p>Trịnh Văn Mạnh</p>
+        </div>
+    </div>
+
+    <main>
+        <h2 class="center-text">Quản lý Sản phẩm</h2>
+        <button id="addProduct">Thêm</button>
+        <table id="productTable">
+            <tr>
+                <th>ID</th>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Thương hiệu</th>
+                <th>Giá</th>
+                <th>Số lượng tồn kho</th>
+                <th>Hành động</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><img src="images/giayAdidas/ALPHABOUNCE COMFY - Đen.jpg" alt="Product 1"></td>
+                <td>Sản phẩm ALPHABOUNCE COMFY - Đen </td>
+                <td>Adidas</td>
+                <td>100,000 VND</td>
+                <td>50</td>
+                <td>
+                    <button class="btn-primary" onclick="openEditModal('ALPHABOUNCE COMFY - Đen','Adidas','100,000 VND',50,'images/giayAdidas/ALPHABOUNCE COMFY - Đen.jpg', this.parentNode.parentNode);">Chỉnh sửa</button>
+                    <button class="btn-danger" onclick="deleteProduct(this.parentNode.parentNode);">Xóa</button>
+                    <button class="btn-warning" onclick="removeImage(this.parentNode.parentNode);">bỏ hình</button>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><img src="images/giayAdidas/Alphabounce EK - Nam - Đen.jpg" alt="Product 1"></td>
+                <td>Sản phẩm Alphabounce EK - Nam - Đen</td>
+                <td>Adidas</td>
+                <td>100,000 VND</td>
+                <td>50</td>
+                <td>
+                    <button class="btn-primary" onclick="openEditModal('Alphabounce EK - Nam-đen','Adidas','100,000 VND',50,'images/giayAdidas/Alphabounce EK - Nam - Đen.jpg', this.parentNode.parentNode);">Chỉnh sửa</button>
+                    <button class="btn-danger" onclick="deleteProduct(this.parentNode.parentNode);">Xóa</button>
+                    <button class="btn-warning" onclick="removeImage(this.parentNode.parentNode);">bỏ hình</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><img src="images/Nike/Nike Air Max 90G/1_3.png" alt="Product 1"></td>
+                <td>Sản phẩm Nike Air Max 90G</td>
+                <td>Nike</td>
+                <td>100,000 VND</td>
+                <td>50</td>
+                <td>
+                    <button class="btn-primary" onclick="openEditModal('Nike Air Max 90G','Nike','100,000 VND',50,'images/Nike/Nike Air Max 90G/1_3.pnG', this.parentNode.parentNode);">Chỉnh sửa</button>
+                    <button class="btn-danger" onclick="deleteProduct(this.parentNode.parentNode);">Xóa</button>
+                    <button class="btn-warning" onclick="removeImage(this.parentNode.parentNode);">bỏ hình</button>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><img src="images/PUMA/Slipstream Retro Grade/4.webp" alt="Product 1"></td>
+                <td>Sản phẩm Slipstream Retro Grade </td>
+                <td>PUMA</td>
+                <td>100,000 VND</td>
+                <td>50</td>
+                <td>
+                    <button class="btn-primary" onclick="openEditModal('Slipstream Retro Grade','Puma','100,000 VND',50,'images/PUMA/Slipstream Retro Grade/4.webp' ,this.parentNode.parentNode);">Chỉnh sửa</button>
+                    <button class="btn-danger" onclick="deleteProduct(this.parentNode.parentNode);">Xóa</button>
+                    <button class="btn-warning" onclick="removeImage(this.parentNode.parentNode);">bỏ hình</button>
+                </td>
+            </tr>
+            <!-- Sản phẩm khác -->
+            <tr>
+                <!-- ... -->
+            </tr>
+        </table>
+       
+<!-- Modal chỉnh sửa sản phẩm -->
+<div id="editModal" class="modal">
+    <span id="closeEditModal" class="close-button" onclick="closeEditModal()">X</span>
+    <h2>Chỉnh sửa sản phẩm</h2>
+    <form id="editForm">
+        <!-- <label for="editImage">Hình ảnh:</label><br>
+        <img id="editImagePreview" src="" alt="Current Image"><br> -->
+        <label for="editImage">Hình ảnh mới:</label><br>
+        <input type="file" id="editImage" name="editImage" accept="image/*"><br>
+        <label for="editName">Tên sản phẩm:</label><br>
+        <input type="text" id="editName" name="editName"><br>
+        <label for="editBrand">Thương hiệu:</label><br>
+        <input type="text" id="editBrand" name="editBrand"><br>
+        <label for="editPrice">Giá:</label><br>
+        <input type="text" id="editPrice" name="editPrice"><br>
+        <label for="editQuantity">Số lượng tồn kho:</label><br>
+        <input type="text" id="editQuantity" name="editQuantity"><br>
+        <label for="editDescription">Mô tả:</label><br>
+        <textarea id="editDescription" name="editDescription"></textarea><br>
+        <input type="submit" value="Lưu">
+    </form>
+</div>
+
+<!-- Modal thêm sản phẩm -->
+<div id="addModal" class="modal">
+    <span id="closeAddModal" class="close-button" onclick="closeAddModal()">X</span>
+    <h2>Thêm sản phẩm</h2>
+    <form id="addForm">
+        <label for="addImage">Hình ảnh:</label><br>
+        <input type="file" id="addImage" name="addImage" accept="image/*"><br>
+        <label for="addName">Tên sản phẩm:</label><br>
+        <input type="text" id="addName" name="addName"><br>
+        <label for="addBrand">Thương hiệu:</label><br>
+        <input type="text" id="addBrand" name="addBrand"><br>
+        <label for="addPrice">Giá:</label><br>
+        <input type="text" id="addPrice" name="addPrice"><br>
+        <label for="addQuantity">Số lượng tồn kho:</label><br>
+        <input type="text" id="addQuantity" name="addQuantity"><br>
+        <label for="addDescription">Mô tả:</label><br>
+        <textarea id="addDescription" name="addDescription"></textarea><br>
+        <input type="submit" value="Thêm">
+    </form>
+</div>
+<div id="overlay" class="overlay"></div>
+    </main>
+    <script>
+// Lưu trữ hàng đang được chỉnh sửa
+let currentRow;
+
+// Hàm mở modal chỉnh sửa sản phẩm
+// function openEditModal(name, brand, price, quantity, image, row) {
+//     // Lưu trữ hàng đang được chỉnh sửa
+//     currentRow = row;
+
+//     // Hiển thị modal
+//     document.getElementById('editModal').style.display = 'block';
+//     // Hiển thị overlay
+//     document.getElementById('overlay').style.display = 'block';
+
+//     // Đặt giá trị cho các trường trong modal
+//     document.getElementById('editImagePreview').src = image; // Set the src for the img tag
+//     document.getElementById('editName').value = name;
+//     document.getElementById('editBrand').value = brand;
+//     document.getElementById('editPrice').value = price;
+//     document.getElementById('editQuantity').value = quantity;
+// }
+// Hàm đóng modal thêm sản phẩm
+function closeAddModal() {
+    // Ẩn modal
+    document.getElementById('addModal').style.display = 'none';
+    // Ẩn overlay
+    document.getElementById('overlay').style.display = 'none';
+}
+function removeImage(row) {
+    // Tìm thẻ img trong hàng và đặt thuộc tính src thành rỗng
+    var img = row.querySelector('img');
+    if (img) {
+        img.src = '';
+    }
+}
+
+// Sự kiện khi nhấn ngoài modal
+// window.onclick = function(event) {
+//     if (event.target == document.getElementById('overlay')) {
+//         // Ẩn modal
+//         document.getElementById('addModal').style.display = 'none';
+//         // Ẩn overlay
+//         document.getElementById('overlay').style.display = 'none';
+//     }
+// }
+function openEditModal(name, brand, price, quantity,image, row) {
+    // Đặt lại trường nhập tệp
+    document.getElementById('editImage').value = null;
+
+    // Lưu trữ hàng đang được chỉnh sửa
+    currentRow = row;
+
+    // Hiển thị modal
+    document.getElementById('editModal').style.display = 'block';
+    // Hiển thị overlay
+    document.getElementById('overlay').style.display = 'block';
+
+    // Đặt giá trị cho các trường trong modal
+    document.getElementById('editImage').src = image;
+    document.getElementById('editName').value = name;
+    document.getElementById('editBrand').value = brand;
+    document.getElementById('editPrice').value = price;
+    document.getElementById('editQuantity').value = quantity;
+}
+// Hàm đóng modal chỉnh sửa sản phẩm
+function closeEditModal() {
+    // Ẩn modal
+    document.getElementById('editModal').style.display = 'none';
+    // Ẩn overlay
+    document.getElementById('overlay').style.display = 'none';
+    // Đặt lại trường nhập tệp
+
+}
+
+
+//Sự kiện khi nhấn ngoài modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById('overlay')) {
+        document.getElementById('addModal').style.display='none';
+        // Ẩn modal
+        document.getElementById('editModal').style.display = 'none';
+        // Ẩn overlay
+        document.getElementById('overlay').style.display = 'none';
+    }
+}
+
+// Hàm xóa sản phẩm
+function deleteProduct(row) {
+    var confirmDelete = confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?");
+    if (confirmDelete) {
+        row.parentNode.removeChild(row);
+    }
+}
+// Sự kiện submit form chỉnh sửa sản phẩm
+document.getElementById('editForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Lấy giá trị mới từ form
+    const newImageFile = document.getElementById('editImage').files[0];
+    const newName = document.getElementById('editName').value;
+    const newBrand = document.getElementById('editBrand').value;
+    const newPrice = document.getElementById('editPrice').value;
+    const newQuantity = document.getElementById('editQuantity').value;
+
+    // Nếu người dùng chọn một tệp hình ảnh mới
+    if (newImageFile) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // Cập nhật nội dung trong hàng đang được chỉnh sửa
+            currentRow.cells[1].innerHTML = `<img src="${e.target.result}" alt="${newName}">`;
+            currentRow.cells[2].innerText = newName;
+            currentRow.cells[3].innerText = newBrand;
+            currentRow.cells[4].innerText = newPrice;
+            currentRow.cells[5].innerText = newQuantity;
+
+            // Ẩn modal
+            document.getElementById('editModal').style.display = 'none';
+            // Ẩn overlay
+            document.getElementById('overlay').style.display = 'none';
+        }
+        reader.readAsDataURL(newImageFile);
+    } else {
+        // Nếu không có tệp hình ảnh mới, chỉ cập nhật thông tin sản phẩm
+        currentRow.cells[2].innerText = newName;
+        currentRow.cells[3].innerText = newBrand;
+        currentRow.cells[4].innerText = newPrice;
+        currentRow.cells[5].innerText = newQuantity;
+
+        // Ẩn modal
+        document.getElementById('editModal').style.display = 'none';
+        // Ẩn overlay
+        document.getElementById('overlay').style.display = 'none';
+    }
+});
+
+// Sự kiện click vào nút thêm sản phẩm
+document.getElementById('editForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Lấy giá trị mới từ form
+    const newImageFile = document.getElementById('editImage').files[0];
+    const newName = document.getElementById('editName').value;
+    const newBrand = document.getElementById('editBrand').value;
+    const newPrice = document.getElementById('editPrice').value;
+    const newQuantity = document.getElementById('editQuantity').value;
+
+    // Nếu người dùng chọn một tệp hình ảnh mới
+    if (newImageFile) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // Cập nhật nội dung trong hàng đang được chỉnh sửa
+            currentRow.cells[1].innerHTML = `<img src="${e.target.result}" alt="${newName}">`;
+            currentRow.cells[2].innerText = newName;
+            currentRow.cells[3].innerText = newBrand;
+            currentRow.cells[4].innerText = newPrice;
+            currentRow.cells[5].innerText = newQuantity;
+
+            // Ẩn modal
+            document.getElementById('editModal').style.display = 'none';
+            // Ẩn overlay
+            document.getElementById('overlay').style.display = 'none';
+        }
+        reader.readAsDataURL(newImageFile);
+    } else {
+        // Nếu không có tệp hình ảnh mới, chỉ cập nhật thông tin sản phẩm
+        currentRow.cells[2].innerText = newName;
+        currentRow.cells[3].innerText = newBrand;
+        currentRow.cells[4].innerText = newPrice;
+        currentRow.cells[5].innerText = newQuantity;
+
+        // Ẩn modal
+        document.getElementById('editModal').style.display = 'none';
+        // Ẩn overlay
+        document.getElementById('overlay').style.display = 'none';
+    }
+});
+
+// Sự kiện click vào nút thêm sản phẩm
+document.getElementById('addProduct').addEventListener('click', function () {
+    document.getElementById('addModal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+});
+
+// Sự kiện submit form thêm sản phẩm
+document.getElementById('addForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Lấy giá trị từ form
+    var imageFile = document.getElementById('addImage').files[0];
+    var name = document.getElementById('addName').value;
+    var brand = document.getElementById('addBrand').value;
+    var price = document.getElementById('addPrice').value;
+    var quantity = document.getElementById('addQuantity').value;
+
+    // Tìm ID lớn nhất
+    var maxId = 0;
+    var table = document.getElementById('productTable');
+    for (var i = 1; i < table.rows.length; i++) {
+        if (table.rows[i].cells.length > 0) {
+            var currentIdText = table.rows[i].cells[0].innerText;
+            if (!isNaN(currentIdText)) {
+                var currentId = parseInt(currentIdText);
+                if (currentId > maxId) {
+                    maxId = currentId;
+                }
+            }
+        }
+    }
+
+    // Tạo hàng mới với ID lớn nhất + 1
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var newRow = table.insertRow(-1);
+        newRow.insertCell(0).innerText = maxId + 1;
+        newRow.insertCell(1).innerHTML = `<img src="${e.target.result}" alt="${name}">`;
+        newRow.insertCell(2).innerText = name;
+        newRow.insertCell(3).innerText = brand;
+        newRow.insertCell(4).innerText = price;
+        newRow.insertCell(5).innerText = quantity;
+
+        // Tạo nút hành động cho hàng mới
+        // var actionCell = newRow.insertCell(6);
+        // actionCell.innerHTML = `
+        //     <button class="btn-primary" onclick="openEditModal('${name}','${brand}','${price}',${quantity},'${e.target.result}', this.parentNode.parentNode);">Chỉnh sửa</button>
+        //     <button class="btn-danger" onclick="deleteProduct(this.parentNode.parentNode);">Xóa</button>
+        //     <button class="btn-warning" onclick="removeImage(this.parentNode.parentNode);">Bỏ hình</button>
+        // `;
+        var actionCell = newRow.insertCell(6);
+        var editButton = document.createElement('button');
+        editButton.className = 'btn-primary';
+        editButton.innerText = 'Chỉnh sửa';
+        editButton.addEventListener('click', function() {
+            openEditModal(name, brand, price, quantity, e.target.result, this.parentNode.parentNode);
+        });
+        actionCell.appendChild(editButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'btn-danger';
+        deleteButton.innerText = 'Xóa';
+        deleteButton.addEventListener('click', function() {
+            deleteProduct(this.parentNode.parentNode);
+        });
+        actionCell.appendChild(deleteButton);
+
+        var removeImageButton = document.createElement('button');
+        removeImageButton.className = 'btn-warning';
+        removeImageButton.innerText = 'Bỏ hình';
+        removeImageButton.addEventListener('click', function() {
+            removeImage(this.parentNode.parentNode);
+        });
+        actionCell.appendChild(removeImageButton);
+        editButton.style.marginRight = '5px';
+        deleteButton.style.marginRight = '5px';
+        removeImageButton.style.marginRight = '10px';
+
+        // Ẩn modal
+        document.getElementById('addModal').style.display = 'none';
+        // Ẩn overlay
+        document.getElementById('overlay').style.display = 'none';
+    }
+    reader.readAsDataURL(imageFile);
+});
+    </script>
+</body>
+</html>

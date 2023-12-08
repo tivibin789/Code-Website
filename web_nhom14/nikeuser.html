@@ -19,6 +19,7 @@
 	<link href="css/style2.css" rel="stylesheet">
 	<link href="css/giohang.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/pagination.css">
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 	<script src="js/ie-emulation-modes-warning.js"></script>
@@ -77,7 +78,7 @@
 						</ul>
 					</li>
 					<li>
-						<a class="page-scroll" href="#contact">Liên hệ</a>
+						<a class="page-scroll" href="advanced-search.html">Tìm kiếm nâng cao</a>
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#Cart" onclick="loadData()">Giỏ hàng</a>
@@ -90,13 +91,10 @@
                             </a>
                             <ul class="header__navbar-user-menu">
                                 <li class="header__navbar-user-item">
-                                    <a href="">Tài khoản của tôi</a>
+                                    <a href="user-infor.html">Thông tin </a>
                                 </li>
                                 <li class="header__navbar-user-item">
-                                    <a href="">Địa chỉ của tôi</a>
-                                </li>
-                                <li class="header__navbar-user-item">
-                                    <a href="">Đơn mua</a>
+                                    <a href="purchase-history.html">Đơn mua</a>
                                 </li>
                                 <li class="header__navbar-user-item">
                                     <a href="nike.html">Đăng xuất</a>
@@ -480,7 +478,13 @@
 				<!-- end team member item -->
 			</div>
 		</div>
-
+		<div class="pagination"> 
+			<a href="">&laquo;</a>
+			<a href="#">1</a>
+			<a href="#">2</a>
+			<a href="#">3</a>
+			<a href="">&raquo;</a>
+		  </div>
 	</section>
 	<section id="contact">
 		<div class="container">
@@ -1317,7 +1321,24 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" onclick="buy()" id="btn-buy"
-						style="border:1px solid black">Thanh toán</button>
+						style="border:1px solid black">Đặt hàng</button>
+						<div id="delivery-info" style=" margin-top: 10px;border-top:1px solid rgba(0,0,0,0.2);">
+							<p  style="font-weight: bold; position: relative; right:200px">Thông tin giao hàng</p>
+							<table style="position: relative;left: 120px;">
+								<tr>
+									<td><label for="delivery-name">Tên:</label></td>
+									<td><input size="35" type="text" id="delivery-name" value="Trịnh Văn Mạnh"></td>
+								</tr>
+								<tr>
+									<td><label for="delivery-phone">Số điện thoại:</label></td>
+									<td><input size="35" type="text" id="delivery-phone" value="0978334512"></td>
+								</tr>
+								<tr>
+									<td><label for="delivery-address">Địa chỉ giao hàng:</label></td>
+									<td><input type="text" id="delivery-address" rows="4" cols="30" size="35" value="Địa chỉ: 78 Trần Hưng Đạo, Tp Hồ Chí Minh"></input></td>
+								</tr>
+							</table>
+						</div>
 				</div>
 			</div>
 		</div>

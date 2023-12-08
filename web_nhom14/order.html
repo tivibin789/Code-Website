@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản lý</title>
+    <link rel="stylesheet" href="css/ggg.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            height: 80px;
+            position: relative;
+            background-color: #3498db;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .a h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .management-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .management-link {
+            margin-right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .management-link:hover {
+            text-decoration: none;
+            border-bottom: 2px solid #fff;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .user-info p {
+            margin: 0;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        main {
+            margin-left: 220px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        #addUser {
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .addnd {
+            font-size: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 2;
+            height: 600px;
+            width: 600px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #menu-button {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #menu-button:hover {
+            background-color: #444;
+        }
+
+        #menu {
+            position: fixed;
+            top: 0;
+            left: -200px;
+            height: 100%;
+            width: 100px;
+            background-color: #2c3e50;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .menu-item {
+            padding: 15px;
+            text-decoration: none;
+            color: #ecf0f1;
+            transition: background-color 0.3s ease;
+            display: block;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .menu-item:hover {
+            background-color: #34495e;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #menu {
+                width: 100%;
+                left: -100%;
+            }
+
+            main {
+                margin-left: 0;
+            }
+
+            #menu-button {
+                display: block;
+            }
+
+            .management-links {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+
+            .management-link {
+                text-decoration: none;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+        }
+
+        /* Chỉnh sửa định dạng cho cột avatar */
+        td img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="a">
+            Trang Quản Trị
+        </div>
+        <div class="management-links">
+            <a href="products.html" class="management-link">Quản lý Sản phẩm</a>
+            <a href="order.html" class="management-link">Quản lý Đơn hàng</a>
+            <a href="Statistical.html" class="management-link">Thống kê</a>
+            <a href="adminuser.html" class="management-link">Quản lý Người dùng</a>
+        </div>
+        <div class="user-info">
+            <img src="images/avatar.gif" alt="Avatar">
+            <p>Trịnh Văn Mạnh</p>
+        </div>
+    </div>
+    <main>
+        <h1>Quản lý đơn hàng</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Khách hàng</th>
+            <th>Địa chỉ</th>
+            <th>Tổng giá</th>
+            <th>Ngày đặt</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+        <!-- Các hàng trong bảng sẽ được thêm vào đây bằng JavaScript -->
+    </table>
+
+    </main>
+</body>
+<script>
+     var orders = [
+            {id: 1, customer: 'Nguyễn Văn A', address: '123 Đường A, Quận B', total: '500,000 VND', date: '2021-12-01', status: 'Chưa xử lý'},
+            {id: 2, customer: 'Trần Thị B', address: '456 Đường C, Quận D', total: '300,000 VND', date: '2021-12-02', status: 'Đã xử lý'},
+            {id: 3, customer: 'Trần Thị C', address: '456 Đường C, Quận D', total: '300,000 VND', date: '2021-12-02', status: 'Đã xử lý'},
+            // Thêm các đơn hàng khác vào đây
+        ];
+
+        // Hàm để thêm một hàng vào bảng
+        function addRow(order) {
+            var table = document.querySelector('table');
+            var row = table.insertRow();
+
+            row.insertCell().innerText = order.id;
+            row.insertCell().innerText = order.customer;
+            row.insertCell().innerText = order.address;
+            row.insertCell().innerText = order.total;
+            row.insertCell().innerText = order.date;
+            row.insertCell().innerText = order.status;
+
+            var actionCell = row.insertCell();
+            var detailButton = document.createElement('button');
+            detailButton.innerText = 'Xem chi tiết';
+            detailButton.className = 'btn btn-primary';
+            detailButton.onclick = function() {
+                window.location.href = 'order-detail.html?id=' + order.id;
+            };
+            actionCell.appendChild(detailButton);
+        }
+        orders.forEach(addRow);
+</script>
+</html>
